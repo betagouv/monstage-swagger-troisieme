@@ -16,6 +16,40 @@ tags:
   description: Operations accessibles aux développeurs disposant d'une clé API
 paths:
   /internship_offers:
+    get:
+      tags:
+        - developers
+      summary: liste (index) les offres déposées
+      operationId: internship_offers_index
+      security:
+        - bearerAuth: []
+      description: |
+        Les offres retournées sont celles qui ont été déposées par les partenaires de monstagedetroisieme.fr
+      responses:
+        '200':
+          description: Offre de stage créée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternshipOffers'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Un argument de la requête fait échouer la requête.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "NOT_FOUND"
+                  error:
+                    type: string
+                    example: "can't find internship_offer with this remote_id"
+                  status:
+                    type: string
+                    example: "not_found"
     post:
       tags:
       - developers
@@ -210,6 +244,10 @@ paths:
       x-swagger-router-controller: Developers
 components:
   schemas:
+    InternshipOffers:
+      type: array
+      items:
+        $ref: '#/components/schemas/InternshipOffer'
     InternshipOffer:
       required:
       - city
