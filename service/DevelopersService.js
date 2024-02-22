@@ -5,7 +5,7 @@
  * ajoute une offre de stage d'un partenaire aux offres proposées en propre par les équipes monstagedetroisieme.fr
  * Les offres de stages décrits ci-dessous décrivent les offres réservées aux classes de **troisiemeen REP  ou REP+**, anciennement nommées troisieme générale 
  *
- * body InternshipOfferPost  (optional)
+ * body InternshipOffer  (optional)
  * returns InternshipOffer
  **/
 exports.internship_offers = function(body) {
@@ -108,7 +108,7 @@ exports.internship_offers_delete = function(remote_id) {
  * Mise à jour des offres . Possibilité de désactiver son offre en passant le paramètre published_at à null 
  *
  * body InternshipOfferPatch  (optional)
- * remote_id String id de l'offre de stage
+ * remote_id String clé étrangère unique , id de l'offre de stage chez le partenaire
  * returns InternshipOffer
  **/
 exports.internship_offers_updatte = function(body,remote_id) {
